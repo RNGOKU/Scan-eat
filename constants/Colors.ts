@@ -5,6 +5,18 @@
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
+const gray = '#4a4a4a';
+const lightBeige = '#fffdf3';
+const beige = '#f2ecd7';
+const darkBeige = '#e5ddd2';
+const lightGreen = '#bfdcc1';
+const green = '#6a8d5d';
+const darkGreen = '#3d5436';
+const lightSalmon = '#efd2c0';
+const salmon = '#ecbcaa';
+const greenLogo = '#b1d9a7';
+const salmonLogo = '#feb897';
+
 
 export const Colors = {
   light: {
@@ -23,4 +35,13 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
+  main: {
+    text: gray,
+    background: green,
+    tint: tintColorLight,
+    mainButton: darkGreen,
+    mainButtonText: salmonLogo,
+    tabIconDefault: '#687076',
+    tabIconSelected: tintColorLight,
+  }
 };
