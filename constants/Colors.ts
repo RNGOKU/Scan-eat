@@ -39,9 +39,10 @@ export const Colors = {
     text: gray,
     background: green,
     tint: tintColorLight,
+    icon: '#9BA1A6',
+    tabIconDefault: '#9BA1A6',
+    tabIconSelected: tintColorDark,
     mainButton: darkGreen,
     mainButtonText: salmonLogo,
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
   }
 };
