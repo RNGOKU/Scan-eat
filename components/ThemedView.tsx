@@ -1,14 +1,23 @@
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 import { View, type ViewProps } from 'react-native';
 
-import { useThemeColor } from '@/hooks/useThemeColor';
-
 export type ThemedViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
+  mainColor?: string;
 };
 
-export function ThemedView({ style, lightColor, darkColor, ...otherProps }: ThemedViewProps) {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+export function ThemedView({ style, mainColor, ...otherProps }: ThemedViewProps) {
+  const backgroundColor = useThemeColor({ main: mainColor }, 'background');
 
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <LinearGradient
+      colors={['#3d5436', '#b1d9a7']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={[style, { flex: 1 }]} 
+    >
+      <View  {...otherProps} />
+    </LinearGradient>
+  );
+  
 }
