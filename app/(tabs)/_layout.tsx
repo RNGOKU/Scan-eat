@@ -1,4 +1,4 @@
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import React from 'react';
 
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -9,19 +9,8 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarStyle: { display: 'none' }, // Hide the tabBar
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <Stack>
+      <Stack.Screen name="(home)" options={{ headerShown: false }} />
+    </Stack>
   );
 }
