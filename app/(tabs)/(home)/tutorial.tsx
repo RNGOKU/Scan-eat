@@ -2,6 +2,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { Ionicons } from "@expo/vector-icons"; // Import camera icon
 import { Link } from "expo-router";
 import { useState } from "react";
+import { Image } from "expo-image"; // Import Image component
 import {
     Dimensions,
     StyleSheet,
@@ -10,31 +11,46 @@ import {
     View,
 } from "react-native";
 
+const tutorialImages: Record<string, any> = {
+    "camera.gif": require("@/assets/images/tutorial/camera.gif"),
+    "checkUp.gif": require("@/assets/images/tutorial/check-up.gif"),
+    "chef.gif": require("@/assets/images/tutorial/chef.gif"),
+    "like.gif": require("@/assets/images/tutorial/like.gif"),
+    "print.gif": require("@/assets/images/tutorial/print.gif"),
+    "user.gif": require("@/assets/images/tutorial/user.gif"),
+};
+
 export default function tutoScreen() {
     const tutorialPages = [
         {
             id: 1,
             content:
                 "Prenez en photo vos articles.\n Avoir un bon éclairage et un bon cadrage améliorera vos résultats.",
-            image: "camera.gif",
+            image: ["camera.gif"],
         },
         {
             id: 2,
             content:
                 "Vérifier les articles reconnus. \n Ajuster les quantités et les filtres que vous souhaitez.",
-            image: "camera.gif",
+            image: ["checkUp.gif"],
         },
         {
             id: 3,
             content:
-                "Choisissez la recette que vous voulez.\n A vous de jouez !! \n Si une recette vous plait, vous pouvez la mettre en favoris ou l'imprimmer.",
-            image: "stats.gif",
+                "Choisissez la recette que vous voulez.\n A vous de jouez !! ",
+            image: ["chef.gif"],
         },
         {
             id: 4,
             content:
+                "Si une recette vous plait, vous pouvez la mettre en favoris ou l'imprimmer.",
+            image: ["like.gif", "print.gif"], // Assuming you have these images in your assets
+        },
+        {
+            id: 5,
+            content:
                 "Vous retrouverez vos recettes favorites ainsi que d'autres paramètres sur votre page de profile.",
-            image: "stats.gif",
+            image: ["user.gif"],
         },
     ];
     const [currentPage, setCurrentPage] = useState(0);
@@ -68,12 +84,18 @@ export default function tutoScreen() {
             </View>
             <Text style={styles.title}>COMMENT ÇA MARCHE ?</Text>
             <View style={styles.tutorialContainer}>
+                <View style={styles.noticeGif}>
+                    {tutorialPages[currentPage].image.map((imgKey: string, idx: number) => (
+                        <Image
+                            key={imgKey + idx}
+                            source={tutorialImages[imgKey]}
+                            style={styles.imageCenter}
+                        />
+                    ))}
+                </View>
                 <Text style={styles.tutorialText}>
                     {tutorialPages[currentPage].content}
                 </Text>
-                {/* <View style={styles.noticeGif}>
-                    <Image source={require(`@/assets/images/tutorial/camera.gif`)} style={styles.imageCenter} />
-                </View> */}
 
                 <View style={styles.navigationButtons}>
                     <TouchableOpacity
@@ -136,10 +158,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: 10,
-        },
+    },
 
     tutorialText: {
-        fontSize: 20,
+        fontSize: 25,
         textAlign: "center",
     },
     navigationButtons: {
@@ -155,7 +177,19 @@ const styles = StyleSheet.create({
         borderColor: "#b1d9a7",
         borderWidth: 2,
     },
+    noticeGif: {
+        width: "100%",
+        height: 300,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    imageCenter: {
+        width: "60%",
+        height: "60%",
    
+    },
+
     hiddenButton: {
         opacity: 0,
     },

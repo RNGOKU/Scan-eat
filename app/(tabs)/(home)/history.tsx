@@ -11,7 +11,30 @@ import {
 } from "react-native";
 
 export default function historicScreen() {
-   
+    const recipes = [
+        {
+            id: 1,
+            title: "Pate aux fromages",
+        },
+        {
+            id: 2,
+            title: "Salade César",
+        },
+        {
+            id: 3,
+            title: "Soupe de légumes",
+        },
+        {
+            id: 4,
+            title: "Tarte aux pommes",
+        },
+        {
+            id: 5,
+            title: "Poulet rôti",
+        },
+
+    ];
+  
     return (
         <ThemedView style={styles.container}>
             <View style={styles.buttonHomeContainer}>
@@ -24,6 +47,7 @@ export default function historicScreen() {
                 </Link>
             </View>
             <Text style={styles.title}>Historique de recette</Text>
+            
             
         </ThemedView>
     );

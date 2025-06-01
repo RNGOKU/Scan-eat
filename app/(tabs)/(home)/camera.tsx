@@ -30,13 +30,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ThemedView style={styles.overlay} />
+      <CameraView style={styles.camera} facing={facing}>
         <View style={styles.buttonHomeContainer}>
           <Link href="/">
             <Ionicons name="arrow-back-circle-outline" size={50} color="#bfdcc1" />
           </Link>
         </View>
-      <CameraView style={styles.camera} facing={facing}>
         <View style={styles.buttonSwitchCamContainer}>
           <TouchableOpacity style={styles.buttonSwitchCam} onPress={toggleCameraFacing}>
             <Ionicons name="camera-reverse" size={40} color="#a35a60" />
@@ -58,13 +57,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end', // Align the camera view to the bottom of the screen
   },
   camera: {
-    flex: 0.9, // Set camera to take 90% of the screen
+    flex: 0.95, // Set camera to take 90% of the screen
     zIndex: 2, // Ensure the camera is above other elements
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject, // Cover the entire screen
-    zIndex: 1, // Place the overlay below the camera
-  },
+
   buttonSwitchCamContainer: {
     position: 'absolute',
     top: 15,
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
   },
   buttonHomeContainer: {
     position: 'absolute',
-    top: 30,
+    top: 15,
     left: 15,
     backgroundColor: 'transparent',
     zIndex: 3, // Ensure buttons are above the camera
@@ -97,8 +93,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   
-
-
   buttonSwitchCam: {
     backgroundColor: '#ffaaa5',
     opacity: 0.8,

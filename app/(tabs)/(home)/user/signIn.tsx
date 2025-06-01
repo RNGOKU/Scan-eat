@@ -1,37 +1,141 @@
-import React from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ThemedView } from "@/components/ThemedView";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
+import React from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignIn() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Sign Up</Text>
-            <TextInput style={styles.input} placeholder="Name" />
-            <TextInput style={styles.input} placeholder="Email" keyboardType="email-address" />
-            <TextInput style={styles.input} placeholder="Password" secureTextEntry />
-            <Button title="Sign Up" onPress={() => { /* Handle sign-up */ }} />
-        </View>
+        <ThemedView style={styles.container}>
+            <View style={styles.buttonHomeContainer}>
+                <Link href="/">
+                    <Ionicons
+                        name="arrow-back-circle-outline"
+                        size={50}
+                        color="#bfdcc1"
+                    />
+                </Link>
+            </View>
+            <View style={styles.shapeContainer}>
+                <LinearGradient
+                    colors={["#3d5436", "#b1d9a7"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.shapeGreen}
+                ></LinearGradient>
+                <LinearGradient
+                    colors={["#efd2c0", "#ecbcaa"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.shapeSalmon}
+                ></LinearGradient>
+            </View>
+            <View style={styles.formContainer}>
+                <Text style={styles.title}>S'inscrire</Text>
+                <TextInput style={styles.input} placeholder="Nom" />
+                <TextInput style={styles.input} placeholder="Prenom" />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    keyboardType="email-address"
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Mot de passe"
+                    secureTextEntry
+                />
+                <Button
+                    title="S'inscrire"
+                    onPress={() => {
+                        /* Handle sign-up */
+                    }}
+                    color="#6a8d5d"
+                />
+                <View style={styles.noAccountContainer}>
+                    <Text>Vous avez déjà un compte ?</Text>
+                    <Link href="/user/logIn" style={styles.link}>
+                        Se connecter
+                    </Link>
+                </View>
+            </View>
+        </ThemedView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
-        backgroundColor: '#fff',
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    shapeContainer: {
+        position: "absolute",
+        width: 430,
+        height: 520,
+        transform: [{ translateX: -215 }, { translateY: -260 }],
+    },
+    buttonHomeContainer: {
+        position: "absolute",
+        top: 20,
+        left: 15,
+        backgroundColor: "transparent",
+        zIndex: 3, // Ensure buttons are above the camera
+    },
+    shapeSalmon: {
+        position: "absolute",
+        height: 150,
+        width: 150,
+        borderRadius: 100,
+        right: -150,
+        bottom: -350,
+    },
+    shapeGreen: {
+        position: "absolute",
+        height: 150,
+        width: 150,
+        borderRadius: 100,
+        right: 100,
+        bottom: 200,
+    },
+    formContainer: {
+        backgroundColor: "rgba(255,255,255,0.13)",
+        borderRadius: 10,
+        padding: 20,
+        backdropFilter: "blur(10px)",
+        borderWidth: 2,
+        borderColor: "rgba(255,255,255,0.1)",
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 32,
+        fontWeight: "500",
+        textAlign: "center",
         marginBottom: 24,
     },
     input: {
-        width: '100%',
-        padding: 12,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 8,
-        marginBottom: 16,
+        height: 50,
+        backgroundColor: "rgba(255,255,255,0.27)",
+        borderRadius: 3,
+        width: 300,
+        paddingHorizontal: 10,
+        marginVertical: 16,
+        fontSize: 14,
+        fontWeight: "300",
+    },
+    button: {
+        backgroundColor: "#6a8d5d",
+        borderRadius: 3,
+        width: 300,
+        paddingVertical: 12,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    noAccountContainer: {
+        marginTop: 20,
+        alignItems: "center",
+    },
+    link: {
+        color: "#6a8d5d",
+        textDecorationLine: "underline",
     },
 });
